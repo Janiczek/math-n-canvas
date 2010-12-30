@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+ 
+<html> 
+ 
+	<head> 
+ 
+        <meta charset="utf-8"> 
+ 
+        <script type="text/javascript" src="jquery.min.js"></script> 
+        <script type="text/javascript" src="coffee-script.js"></script> 
+        
+        <script type="text/coffeescript"> 
+                                
+            $ ->
+            
+                canvas        = $("canvas")[0]
+                c             = canvas.getContext "2d"  
+                                
+                $("#a").change ->   
+                
+                    angle = $("#a").val()
+                    count = $("#n").val()
+                    scale = $("#c").val()
+                    
+                    $("#aa").html(angle)
+                
+                    start_x = 150
+                    start_y = 150
+                                
+                    canvas.width = canvas.width
+                    c.strokeStyle = "#000" 
+                    c.fillStyle   = "#000"
+                    
+                    for n in [0...count]
+                        r = scale * Math.sqrt n
+                        a = (n * angle) % 360
+                        x = r * Math.cos a
+                        y = r * Math.sin a
+                        cur_x = start_x + x
+                        cur_y = start_y - y
+                        
+                        c.beginPath()
+                        c.arc cur_x, cur_y, 1, 0, Math.PI*2, true
+                        c.closePath()
+                        c.fill()
+                        
+            $("#submit").click()
+                                    
+        </script> 
+ 
+        <title>Phyllotaxis</title> 
+ 
+    </head> 
+ 
+    <body> 
+        
+        <canvas id=canvas width=300 height=300 style="border: 2px solid #000"></canvas><br> 
+        
+        Angle: <span id="aa"></span><br>
+        <input type="range" id="a" min=0 max=359.9 value=0 step=0.01 style="width: 300px"><br>
+        Circles<br>
+        <input type="text" id="n" value="800"><br>
+        Scale<br>
+        <input type="text" id="c" value="3"><br><br>
+        
+        The canvas will be redrawn with change of the angle.<br>
+        Tip: Decrease the scale and increase the number of circles.<br><br>
+        Interesting angles:<br>
+        <ul>
+            <li>341.22</li>
+            <li>320.05</li>
+            <li>265.26</li>
+            <li>249.07</li>
+            <li>237.86</li>
+            <li>225.4</li>
+            <li>186.8</li>
+            <li>173.1</li>
+            <li>117.06</li>
+            <li>110.83</li>
+            <li>98.38</li>
+            <li>37.36</li>
+            <li>11.21</li>
+        </ul>
+        
+        <a href="index.htm">Back to the index</a>    
+    
+    </body> 
+ 
+</html> 
