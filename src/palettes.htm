@@ -1,0 +1,93 @@
+<!DOCTYPE html> 
+ 
+<html> 
+ 
+	<head> 
+ 
+        <meta charset="utf-8"> 
+ 
+        <script type="text/javascript" src="../libs/jquery.js"></script> 
+        <script type="text/javascript" src="../libs/coffeescript.js"></script> 
+        
+        <script type="text/coffeescript"> 
+
+          $ ->
+
+            s1 = 0
+            l2 = 0
+            h3 = 0
+            mvt = 1
+
+            animate = ->
+
+              s1 += mvt
+              l2 += mvt
+              h3 += mvt
+
+              if s1 < 0 or s1 > 15
+                mvt *= -1 
+
+              redraw()
+              setTimeout animate,50
+
+            redraw = ->
+
+              for h1 in [0..15]
+                for l1 in [0..15]
+                  hsl1c.fillStyle = "hsl(#{h1*24},
+                                         #{Math.floor s1*100/15}%,
+                                         #{Math.floor l1*100/15}%)"
+                  hsl1c.fillRect h1 * 15,
+                                 l1 * 15,
+                                 (h1+1) * 15,
+                                 (l1+1) * 15
+
+              for h2 in [0..15]
+                for s2 in [0..15]
+                  hsl2c.fillStyle = "hsl(#{h2*24},
+                                         #{Math.floor s2*100/15}%,
+                                         #{Math.floor l2*100/15}%)"
+                  hsl2c.fillRect h2 * 15,
+                                 s2 * 15,
+                                 (h2+1) * 15,
+                                 (s2+1) * 15
+
+              for s3 in [0..15]
+                for l3 in [0..15]
+                  hsl3c.fillStyle = "hsl(#{h3*24},
+                                         #{Math.floor s3*100/15}%,
+                                         #{Math.floor l3*100/15}%)"
+                  hsl3c.fillRect s3 * 15,
+                                 l3 * 15,
+                                 (s3+1) * 15,
+                                 (l3+1) * 15
+
+            hsl1 = $('#hsl1')[0]
+            hsl2 = $('#hsl2')[0]
+            hsl3 = $('#hsl3')[0]
+
+            if hsl1 and hsl2 and hsl3 and hsl1.getContext
+
+              hsl1c = hsl1.getContext '2d'
+              hsl2c = hsl2.getContext '2d'
+              hsl3c = hsl3.getContext '2d'
+
+              animate()
+
+        </script> 
+ 
+        <title>HSL animated color palettes</title> 
+ 
+    </head> 
+ 
+    <body> 
+        
+    <canvas id=hsl1 width=255 height=255>Update your browser!</canvas>
+    <canvas id=hsl2 width=255 height=255>Update your browser!</canvas>
+    <canvas id=hsl3 width=255 height=255>Update your browser!</canvas>
+        
+    <a href="index.htm">Back to the index</a>    
+    
+    </body> 
+ 
+</html> 
