@@ -10,11 +10,16 @@
         <script type="text/javascript" src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
         
         <script type="text/coffeescript"> 
-                                
+
             $ ->
             
                 canvas = $("canvas")[0]
                 c      = canvas.getContext "2d"  
+
+                $("li").click ->
+                    
+                    $("#a").val($(this).html())
+                    $("#a").change()
                                 
                 $("#a").change ->   
                 
@@ -63,9 +68,8 @@
         Scale<br>
         <input type="text" id="c" value="3"><br><br>
         
-        The canvas will be redrawn with change of the angle.<br>
-        Tip: Decrease the scale and increase the number of circles.<br><br>
-        Interesting angles:<br>
+        Change the angle, go on :)<br>
+        Interesting angles (click them!):<br>
         <ul>
             <li>341.22</li>
             <li>320.05</li>

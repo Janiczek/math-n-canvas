@@ -12,3 +12,6 @@ Current scripts:
 
 * palettes.htm
     * *Animated HSL palletes*, quite self-explainatory :) changing *hue*, *saturance* and *lightness*.
+
+* genetics.htm
+    * *Genetic algorithms*, trying to find radius and center point of three circles.
