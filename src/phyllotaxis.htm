@@ -16,9 +16,36 @@
                 canvas = $("canvas")[0]
                 c      = canvas.getContext "2d"  
 
+                c.strokeStyle = "#000" 
+                c.fillStyle   = "#000"
+
+                start_x = 150
+                start_y = 150
+                                
+                normalize = (max) ->
+                    # higher order function
+                    # normalize point_r from min..max to new_min..new_max
+                    # http://stackoverflow.com/a/1969274/403702
+                    min = 0
+                    nmin = 1
+                    nmax = 3
+                    (n) ->
+                      scaled = n * 1.0 / max
+                      nmin + scaled * (nmax - nmin)
+
+                circle = (x,y,r) ->
+                  c.beginPath()
+                  c.arc(x,y,r,0,Math.PI*2,true)
+                  c.closePath()
+                  c.fill()
+
                 $("li").click ->
                     
                     $("#a").val($(this).html())
+                    $("#a").change()
+
+                $("#g").change ->
+                    
                     $("#a").change()
                                 
                 $("#a").change ->   
@@ -26,16 +53,16 @@
                     angle = $("#a").val()
                     count = $("#n").val()
                     scale = $("#c").val()
+                    grow  = $("#g").attr("checked") == "checked"
                     
                     $("#aa").html(angle)
                 
-                    start_x = 150
-                    start_y = 150
-                                
-                    canvas.width = canvas.width
-                    c.strokeStyle = "#000" 
-                    c.fillStyle   = "#000"
-                    
+                    canvas.width = canvas.width # reset
+
+                    norm = (n) -> 1
+                    if grow
+                      norm = normalize(count)
+
                     for n in [0...count]
                         r = scale * Math.sqrt n
                         a = (n * angle) % 360
@@ -44,14 +71,16 @@
                         cur_x = start_x + x
                         cur_y = start_y - y
                         
-                        c.beginPath()
-                        c.arc cur_x, cur_y, 1, 0, Math.PI*2, true
-                        c.closePath()
-                        c.fill()
+                        circle cur_x, cur_y, norm(n)
                         
-            $("#submit").click()
+            $("#a").change()
+
                                     
         </script> 
+
+        <style>
+          .column {min-width: 350px; width: 33%; float: left;}
+        </style>
  
         <title>Phyllotaxis</title> 
  
@@ -59,15 +88,25 @@
  
     <body> 
         
+      <div class="column">
         <canvas id=canvas width=300 height=300 style="border: 2px solid #000"></canvas><br> 
+      </div>
         
+      <div class="column">
         Angle: <span id="aa"></span><br>
-        <input type="range" id="a" min=0 max=359.9 value=0 step=0.01 style="width: 300px"><br>
+        <input type="range" id="a" min=0 max=359.9 value=37.36 step=0.01 style="width: 300px"><br>
         Circles<br>
-        <input type="text" id="n" value="800"><br>
+        <input type="text" id="n" value="1200"><br>
         Scale<br>
         <input type="text" id="c" value="3"><br><br>
+        <input type="checkbox" id="g" checked="checked">Grow from the center<br><br>
+        The growing is a cool idea from <a href="http://www.mathrecreation.com">mathcreation blog</a>, thanks! :)<br>
+        For some amazing blogposts and pictures of phyllotaxis <a href="http://www.mathrecreation.com/search?q=phyllotaxis">see here</a>!<br><br>
+
+        <a href="index.htm">Back to the index</a>    
+      </div>
         
+      <div class="column">
         Change the angle, go on :)<br>
         Interesting angles (click them!):<br>
         <ul>
@@ -85,8 +124,8 @@
             <li>37.36</li>
             <li>11.21</li>
         </ul>
+      </div>
         
-        <a href="index.htm">Back to the index</a>    
     
     </body> 
  
