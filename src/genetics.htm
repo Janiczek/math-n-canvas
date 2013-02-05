@@ -162,14 +162,13 @@ window.udelejGen = (iGen) ->
   p_mutace += 0.01
   if p_mutace > P_MUTACE_MAX
     p_mutace = P_MUTACE_MIN
-
+    
   for i in [0...VEL_POPULACE]
 
     poleF[i] = fitness(populace[i])
 
     # nasli jsme nove maximum?
     if poleF[i] > maxF
-      vykresli()
       console.log "nove max " + poleF[i] + " s mutaci " + p_mutace
       p_mutace = P_MUTACE_MIN
       maxF = poleF[i]
@@ -234,6 +233,8 @@ window.udelejGen = (iGen) ->
     novaPop[0][i] = populace[maxF_i][i]
 
   populace = novaPop
+
+  vykresli()
 
   # jako funkce + setTimeout udelano proto, aby canvas vykresloval
   # pri kazdem projeti cyklem a ne jen az to vse skonci
