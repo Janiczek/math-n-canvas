@@ -44,8 +44,13 @@
                     $("#a").val($(this).html())
                     $("#a").change()
 
+                $("#n").change ->
+                    $("#a").change()
+
+                $("#c").change ->
+                    $("#a").change()
+
                 $("#g").change ->
-                    
                     $("#a").change()
                                 
                 $("#a").change ->   
@@ -53,7 +58,7 @@
                     angle = $("#a").val()
                     count = $("#n").val()
                     scale = $("#c").val()
-                    grow  = $("#g").attr("checked") == "checked"
+                    grow  = $("#g:checked").length == 1
                     
                     $("#aa").html(angle)
                 
