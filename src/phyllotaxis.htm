@@ -80,7 +80,20 @@
                         
             $("#a").change()
 
-                                    
+            x = ->
+              $("#a")[0].value = Math.random() * 359.9;
+              $("#a").change()
+
+            xIntervalNum = -1
+
+            $("#startAnimation").on("click", ->
+              if xIntervalNum == -1 then xIntervalNum = setInterval(x,300))
+
+            $("#stopAnimation").on("click", ->
+              if xIntervalNum != -1
+                clearInterval(xIntervalNum)
+                xIntervalNum = -1)
+
         </script> 
 
         <style>
@@ -129,8 +142,10 @@
             <li>37.36</li>
             <li>11.21</li>
         </ul>
+        Or animate:
+        <button id="startAnimation">Animate</button>
+        <button id="stopAnimation">Stop</button>
       </div>
-        
     
     </body> 
  
