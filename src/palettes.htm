@@ -1,15 +1,15 @@
-<!DOCTYPE html> 
- 
-<html> 
- 
-	<head> 
- 
-        <meta charset="utf-8"> 
- 
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+        <meta charset="utf-8">
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
-        
-        <script type="text/coffeescript"> 
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.10.0/coffee-script.min.js"></script>
+
+        <script type="text/coffeescript">
 
           $ ->
 
@@ -25,7 +25,7 @@
               h3 += mvt
 
               if s1 < 0 or s1 > 15
-                mvt *= -1 
+                mvt *= -1
 
               redraw()
               setTimeout animate,50
@@ -77,21 +77,21 @@
 
               animate()
 
-        </script> 
- 
-        <title>HSL animated color palettes</title> 
- 
-    </head> 
- 
-    <body> 
-        
+        </script>
+
+        <title>HSL animated color palettes</title>
+
+    </head>
+
+    <body>
+
     <canvas id=p_hue   width=255 height=255>Update your browser!</canvas>
     <canvas id=p_sat   width=255 height=255>Update your browser!</canvas>
     <canvas id=p_light width=255 height=255>Update your browser!</canvas>
-        
+
     <br>
-    <a href="../index.htm">Back to the index</a>    
-    
-    </body> 
- 
-</html> 
+    <a href="../index.htm">Back to the index</a>
+
+    </body>
+
+</html>

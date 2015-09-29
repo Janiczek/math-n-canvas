@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Biologické algoritmy (2)</title>    
-        
+        <title>Biologické algoritmy (2)</title>
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
-        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.10.0/coffee-script.min.js"></script>
+
         <script type="text/coffeescript">
 #======================================================================#
 # Biologicke algoritmy (2) - Evoluční algoritmy                        #
@@ -21,7 +21,7 @@
 #         = vektor o 9 hodnotach
 #
 #         [ x1, y1, r1,
-#           x2, y2, r2, 
+#           x2, y2, r2,
 #           x3, y3, r3  ]
 #
 # http://i.iinfo.cz/images/26/evolucni-algoritmy-2-2.png
@@ -129,7 +129,7 @@ vyberJedince = (poleF, soucetF) ->
   #
   # vybereme si nejaky bod (cislo < soucetF)
   # postupne scitame fitness a kdo je nejbliz, toho vyberem
-  # 
+  #
   # http://en.wikipedia.org/wiki/Fitness_proportionate_selection
   # http://stackoverflow.com/questions/177271/roulette-selection-in-genetic-algorithms
 
@@ -162,7 +162,7 @@ window.udelejGen = (iGen) ->
   p_mutace += 0.01
   if p_mutace > P_MUTACE_MAX
     p_mutace = P_MUTACE_MIN
-    
+
   for i in [0...VEL_POPULACE]
 
     poleF[i] = fitness(populace[i])

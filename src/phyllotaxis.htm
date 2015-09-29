@@ -1,27 +1,27 @@
-<!DOCTYPE html> 
- 
-<html> 
- 
-	<head> 
- 
-        <meta charset="utf-8"> 
- 
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+        <meta charset="utf-8">
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
-        
-        <script type="text/coffeescript"> 
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.10.0/coffee-script.min.js"></script>
+
+        <script type="text/coffeescript">
 
             $ ->
-            
-                canvas = $("canvas")[0]
-                c      = canvas.getContext "2d"  
 
-                c.strokeStyle = "#000" 
+                canvas = $("canvas")[0]
+                c      = canvas.getContext "2d"
+
+                c.strokeStyle = "#000"
                 c.fillStyle   = "#000"
 
                 start_x = 150
                 start_y = 150
-                                
+
                 normalize = (max) ->
                     # higher order function
                     # normalize point_r from min..max to new_min..new_max
@@ -40,7 +40,7 @@
                   c.fill()
 
                 $("li").click ->
-                    
+
                     $("#a").val($(this).html())
                     $("#a").change()
 
@@ -52,16 +52,16 @@
 
                 $("#g").change ->
                     $("#a").change()
-                                
-                $("#a").change ->   
-                
+
+                $("#a").change ->
+
                     angle = $("#a").val()
                     count = $("#n").val()
                     scale = $("#c").val()
                     grow  = $("#g:checked").length == 1
-                    
+
                     $("#aa").html(angle)
-                
+
                     canvas.width = canvas.width # reset
 
                     norm = (n) -> 1
@@ -75,9 +75,9 @@
                         y = r * Math.sin a
                         cur_x = start_x + x
                         cur_y = start_y - y
-                        
+
                         circle cur_x, cur_y, norm(n)
-                        
+
             $("#a").change()
 
             x = ->
@@ -94,22 +94,22 @@
                 clearInterval(xIntervalNum)
                 xIntervalNum = -1)
 
-        </script> 
+        </script>
 
         <style>
           .column {min-width: 350px; width: 33%; float: left;}
         </style>
- 
-        <title>Phyllotaxis</title> 
- 
-    </head> 
- 
-    <body> 
-        
+
+        <title>Phyllotaxis</title>
+
+    </head>
+
+    <body>
+
       <div class="column">
-        <canvas id=canvas width=300 height=300 style="border: 2px solid #000"></canvas><br> 
+        <canvas id=canvas width=300 height=300 style="border: 2px solid #000"></canvas><br>
       </div>
-        
+
       <div class="column">
         Angle: <span id="aa"></span><br>
         <input type="range" id="a" min=0 max=359.9 value=37.36 step=0.01 style="width: 300px"><br>
@@ -121,9 +121,9 @@
         The growing is a cool idea from <a href="http://www.mathrecreation.com">mathcreation blog</a>, thanks! :)<br>
         For some amazing blogposts and pictures of phyllotaxis <a href="http://www.mathrecreation.com/search?q=phyllotaxis">see here</a>!<br><br>
 
-        <a href="../index.htm">Back to the index</a>    
+        <a href="../index.htm">Back to the index</a>
       </div>
-        
+
       <div class="column">
         Change the angle, go on :)<br>
         Interesting angles (click them!):<br>
@@ -146,7 +146,7 @@
         <button id="startAnimation">Animate</button>
         <button id="stopAnimation">Stop</button>
       </div>
-    
-    </body> 
- 
-</html> 
+
+    </body>
+
+</html>
