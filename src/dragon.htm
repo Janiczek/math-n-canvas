@@ -5,104 +5,104 @@
 	<head>
 
         <meta charset="utf-8">
- 
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript" src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>
-        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.10.0/coffee-script.min.js"></script>
+
         <script type="text/coffeescript">
-        
+
             Number::mod = (n) -> ((this % n) + n) % n
-            
+
             turn = (n) -> (((n & -n) << 1) & n) != 0
-                                
+
             $ ->
-            
+
                 canvas = $("canvas")[0]
-                c      = canvas.getContext "2d"  
-                
-                $("#submit").click ->   
-                
+                c      = canvas.getContext "2d"
+
+                $("#submit").click ->
+
                     cur_x    = 275 - .5
-                    cur_y    = 450 - .5  
-                    rotation = 0    
-                
-                    length = parseInt $("#length").val()                      
-                    steps  = parseInt $("#steps").val()  
-                                
+                    cur_y    = 450 - .5
+                    rotation = 0
+
+                    length = parseInt $("#length").val()
+                    steps  = parseInt $("#steps").val()
+
                     canvas.width = canvas.width
-                    c.strokeStyle = "#f00"   
-                    c.beginPath()                    
-                    c.moveTo cur_x, cur_y    
-                    
-                    for count in [0..steps]  
-                    
+                    c.strokeStyle = "#f00"
+                    c.beginPath()
+                    c.moveTo cur_x, cur_y
+
+                    for count in [0..steps]
+
                         if turn count then rotation-- else rotation++
                         rotation = rotation.mod 4
-                        
+
                         switch rotation
                             when 0 then cur_y -= length
                             when 1 then cur_x += length
                             when 2 then cur_y += length
                             when 3 then cur_x -= length
-                            
-                        c.lineTo cur_x, cur_y      
-                    
+
+                        c.lineTo cur_x, cur_y
+
                     c.stroke()
-                
-                $("#animate").click ->    
-                
+
+                $("#animate").click ->
+
                     cur_x    = 275 - .5
-                    cur_y    = 450 - .5  
-                    rotation = 0    
-                
-                    length  = parseInt $("#length").val()                      
-                    steps   = parseInt $("#steps").val()                     
+                    cur_y    = 450 - .5
+                    rotation = 0
+
+                    length  = parseInt $("#length").val()
+                    steps   = parseInt $("#steps").val()
                     howfast = parseInt $("#howfast").val()
-                                
+
                     canvas.width = canvas.width
                     c.strokeStyle = "#f00"
                     stopped = false
-                    
-                    if steps > 0    
-                            
+
+                    if steps > 0
+
                         count = 0
                         outerLoop = ->
-                        
+
                             c.beginPath()
                             c.moveTo cur_x, cur_y
-                        
+
                             step_current = count
                             step_final   = count + howfast
-                            
+
                             if step_final > steps
                                 step_final -= (step_final - steps) - 1
-                                                                           
-                            for ministep in [step_current...step_final] 
-                            
+
+                            for ministep in [step_current...step_final]
+
                                 $("#stop").click ->
-                                    stopped = true    
-                                
-                                if stopped then break         
-                                                    
+                                    stopped = true
+
+                                if stopped then break
+
                                 if turn ministep then rotation-- else rotation++
                                 rotation = rotation.mod 4
-                                
+
                                 switch rotation
                                     when 0 then cur_y -= length
                                     when 1 then cur_x += length
                                     when 2 then cur_y += length
                                     when 3 then cur_x -= length
-                                    
-                                c.lineTo cur_x, cur_y 
-                            
+
+                                c.lineTo cur_x, cur_y
+
                             c.stroke()
-                            
+
                             count += howfast
                             if count <= steps and not stopped then setTimeout outerLoop, 10
-                            
+
                         outerLoop()
-                                
-                        
+
+
                 $("#wth").click ->
                     $("<p>").delay(500).queue ->
                         $("#steps").val(51)
@@ -140,7 +140,7 @@
                                                                 $("<p>").delay(500).queue ->
                                                                     $("#steps").val 94000
                                                                     $("#submit").click()
-                        
+
         </script>
 
         <title>Dragon curve</title>
@@ -148,7 +148,7 @@
     </head>
 
     <body>
-        
+
         <canvas id=canvas width=900 height=600 style="border: 2px solid #000"></canvas><br>
         <input type="submit" id="wth" value="What the hell?"><br>
         Length (1-5 is OK):<br>
@@ -161,8 +161,8 @@
         <input type="submit" id="animate" value="Animate!">
         <input type="submit" id="stop" value="Stop!"><br><br>
 
-        <a href="../index.htm">Back to the index</a>    
-    
+        <a href="../index.htm">Back to the index</a>
+
     </body>
 
 </html>
